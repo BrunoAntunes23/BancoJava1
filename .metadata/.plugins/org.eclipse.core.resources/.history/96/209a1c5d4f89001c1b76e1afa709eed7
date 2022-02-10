@@ -1,0 +1,118 @@
+package View;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import Helper.Util;
+import Model.Cliente;
+import Model.Conta;
+
+public class Banco {
+	static String nome="geek bank";
+	static Scanner teclado=new Scanner(System.in);
+	static ArrayList<Conta>contas;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Banco.contas=new ArrayList<Conta>();
+		Banco.menu();
+		
+	}
+
+	private static void menu() {
+		// TODO Auto-generated method stub
+		int opc=0;
+		System.out.println("=============================");
+		System.out.println("\n=============ATM=============\n");
+		System.out.println("========"+Banco.nome+"========");
+		System.out.println("=============================");
+		System.out.println("selecione uma opção abaixo");
+		System.out.println("1-criar conta");
+		System.out.println("2-saque");
+		System.out.println("3-depositos");
+		System.out.println("4-transferencia");
+		System.out.println("5-listar contas");
+		System.out.println("6-sair do sistema");
+		try {
+			opc=Integer.parseInt(Banco.teclado.nextLine());
+			
+		}catch(NumberFormatException e) {
+			System.out.println("informe uma opção valida");
+			Util.pausar(1);
+			Banco.menu();
+		}
+		switch (opc) {
+		case 1: 
+			Banco.CriarConta();
+			break;
+		case 2:
+			Banco.Saque();
+			
+			break;
+		case 3:
+			Banco.Deposito();
+			break;
+		case 4:
+			Banco.Transferencia();
+			break;
+		case 5:
+			Banco.ListarContas();
+			break;
+		case 6:
+			System.out.println("até a proxima");
+			Util.pausar(3);
+			System.exit(0);
+		
+		default:
+			System.out.println("opção invalida....");
+			Util.pausar(2);
+			Banco.menu();
+			break;
+		}
+	}
+
+	private static void ListarContas() {
+		// TODO Auto-generated method stub
+		System.out.println("listando as contas");
+		
+	}
+
+	private static void Transferencia() {
+		System.out.println("efetuando Transferencia");
+		
+	}
+
+	private static void Deposito() {
+		// TODO Auto-generated method stub
+		System.out.println("efetuando deposito");
+		
+	}
+
+	private static void Saque() {
+		// TODO Auto-generated method stub
+		System.out.println("efetuando saque");
+		
+	}
+
+	private static void CriarConta() {
+		// TODO Auto-generated method stub
+		System.out.println("informe os dados do cliente");
+		String nome=Banco.teclado.nextLine();
+		System.out.println("\nemail");
+		String email=Banco.teclado.nextLine();
+		System.out.println("\n cpf");
+		String cpf=Banco.teclado.nextLine();
+		System.out.println("\nData de nascimento");
+		String dataNasc=Banco.teclado.nextLine();
+		
+		Cliente cliente=new Cliente(nome,email,cpf,Util.stringParaDate(dataNasc));
+		
+		Conta conta=new Conta(cliente);
+		Banco.contas.add(conta);
+		
+		System.out.println("conta criada com sucesso \n"+conta+"\n");
+		Util.pausar(3);
+		Banco.menu();
+	}
+	
+}
